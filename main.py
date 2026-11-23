@@ -220,6 +220,14 @@ def hay_stock_disponible():
 
 
 # ---------- Fiados ----------
+def deuda_pendiente(codigo, i):
+    # Caso base: ya se revisaron todos los fiados
+    if i == len(codigos):
+        return 0
+    # Caso recursivo: suma este fiado (si corresponde) mas el resto
+    if codigos[i] == codigo and estados[i] == "Pendiente":
+        return montos[i] + deuda_pendiente(codigo, i + 1)
+    return deuda_pendiente(codigo, i + 1)
 def registrar_fiado():
     print("----- REGISTRAR FIADO -----")
 
@@ -506,3 +514,4 @@ def main():
 
 
 main()
+
