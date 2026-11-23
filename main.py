@@ -415,24 +415,11 @@ def ordenar_por_deuda():
 def registrar_pago():
     print("----- REGISTRAR PAGO -----")
 
-    if len(codigos) == 0:
-        print("No hay clientes registrados")
-        return
-
-    codigo = leer_codigo("Ingrese el codigo del cliente: ")
-    encontrado = False
-    deuda_total = 0
-
-    for i in range(len(codigos)):
-        if codigos[i] == codigo:
-            encontrado = True
-            if estados[i] == "Pendiente":
-                deuda_total = deuda_total + montos[i]
-    deuda_total = round(deuda_total, 2)
-
-    if not encontrado:
+    if buscar_en(codigos, codigo) == -1:
         print("Cliente no encontrado")
         return
+
+    deuda_total = round(deuda_pendiente(codigo, 0), 2)
 
     if deuda_total == 0:
         print("El cliente no tiene deudas pendientes")
@@ -510,6 +497,7 @@ def main():
 
 
 main()
+
 
 
 
