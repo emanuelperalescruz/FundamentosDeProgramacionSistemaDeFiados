@@ -392,11 +392,7 @@ def ordenar_por_deuda():
     # 2. Deuda pendiente de cada cliente
     deudas_u = []
     for c in codigos_u:
-        deuda = 0
-        for j in range(len(codigos)):
-            if codigos[j] == c and estados[j] == "Pendiente":
-                deuda = deuda + montos[j]
-        deudas_u.append(round(deuda, 2))
+        deudas_u.append(round(deuda_pendiente(c, 0), 2))
 
     # 3. Ordenar de mayor a menor (burbuja)
     n = len(codigos_u)
@@ -514,5 +510,6 @@ def main():
 
 
 main()
+
 
 
