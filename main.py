@@ -117,22 +117,20 @@ def guardar_datos():
 
 
 def cargar_datos():
-    try:
-        with open(ARCHIVO, "r", encoding="utf-8") as f:
-            for linea in f:
-                partes = linea.strip().split("|")
-                if len(partes) == 7:
-                    try:
-                        monto = float(partes[3])
-                    except ValueError:
-                        continue
-                    codigos.append(partes[0])
-                    nombres.append(partes[1])
-                    productos.append(partes[2])
-                    montos.append(monto)
-                    fechas.append(partes[4])
-                    fechas_pago.append(partes[5])
-                    estados.append(partes[6])
+    archivo = open(ARCHIVO, "a", encoding="utf-8")   # modo "a" crea el archivo si no existe
+    archivo.close()
+    archivo = open(ARCHIVO, "r", encoding="utf-8")
+    for linea in archivo:
+        partes = linea.strip().split("|")
+        if len(partes) == 7:
+            codigos.append(partes[0])
+            nombres.append(partes[1])
+            productos.append(partes[2])
+            montos.append(float(partes[3]))
+            fechas.append(partes[4])
+            fechas_pago.append(partes[5])
+            estados.append(partes[6])
+    archivo.close()
     except FileNotFoundError:
         pass  # primera vez: todavia no existe el archivo
 
