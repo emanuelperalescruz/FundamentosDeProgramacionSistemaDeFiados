@@ -229,8 +229,9 @@ def registrar_fiado():
     codigo = leer_codigo("Ingrese el codigo del cliente: ")
 
     # Si el cliente ya existe, se usa su nombre registrado (evita nombres distintos)
-    if codigo in codigos:
-        nombre = nombres[codigos.index(codigo)]
+    pos = buscar_en(codigos, codigo)
+    if pos != -1:
+        nombre = nombres[pos]
         print("Cliente ya registrado:", nombre)
     else:
         nombre = leer_nombre("Ingrese el nombre del cliente: ")
