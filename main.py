@@ -385,7 +385,7 @@ def ordenar_por_deuda():
     codigos_u = []
     nombres_u = []
     for i in range(len(codigos)):
-        if codigos[i] not in codigos_u:
+        if buscar_en(codigos_u, codigos[i]) == -1:
             codigos_u.append(codigos[i])
             nombres_u.append(nombres[i])
 
@@ -514,4 +514,5 @@ def main():
 
 
 main()
+
 
