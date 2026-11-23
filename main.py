@@ -94,6 +94,12 @@ def fecha_hora_actual():
     # Fecha y hora exactas del momento del registro
     return datetime.now().strftime("%d/%m/%Y %H:%M")
 
+def buscar_en(lista, valor):
+    # Devuelve la posicion del valor en la lista, o -1 si no existe
+    for i in range(len(lista)):
+        if lista[i] == valor:
+            return i
+    return -1
 
 # ---------- Archivos ----------
 def guardar_datos():
