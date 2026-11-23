@@ -449,11 +449,7 @@ def registrar_pago():
                 fechas_pago[i] = fecha_pago
 
     # Deuda que le queda
-    deuda_total = 0
-    for i in range(len(codigos)):
-        if codigos[i] == codigo and estados[i] == "Pendiente":
-            deuda_total = deuda_total + montos[i]
-    deuda_total = round(deuda_total, 2)
+    deuda_total = round(deuda_pendiente(codigo, 0), 2)
 
     print("Pago registrado correctamente")
     print("Monto abonado:", pago)
@@ -497,6 +493,7 @@ def main():
 
 
 main()
+
 
 
 
