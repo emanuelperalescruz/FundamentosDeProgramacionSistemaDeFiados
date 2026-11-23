@@ -48,10 +48,16 @@ def leer_monto(mensaje):
     # Solo acepta numeros mayores que cero, con maximo 2 decimales (9.50 o 9,50)
     while True:
         texto = input(mensaje).strip().replace(",", ".")
-        if re.fullmatch(r"[0-9]+(\.[0-9]{1,2})?", texto) and float(texto) > 0:
+        partes = texto.split(".")
+        valido = False
+        if texto.isascii():
+            if len(partes) == 1 and partes[0].isdigit():
+                valido = True
+            elif len(partes) == 2 and partes[0].isdigit() and partes[1].isdigit() and len(partes[1]) <= 2:
+                valido = True
+        if valido and float(texto) > 0:
             return round(float(texto), 2)
         print("Error: ingrese solo numeros mayores que cero, sin letras ni simbolos. Ejemplo: 9.50")
-
 
 def leer_si_no(mensaje):
     while True:
