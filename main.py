@@ -109,11 +109,11 @@ def buscar_en(lista, valor):
 
 # ---------- Archivos ----------
 def guardar_datos():
-    with open(ARCHIVO, "w", encoding="utf-8") as f:
-        for i in range(len(codigos)):
-            linea = "|".join([codigos[i], nombres[i], productos[i], str(montos[i]),
-                              fechas[i], fechas_pago[i], estados[i]])
-            f.write(linea + "\n")
+    archivo = open(ARCHIVO, "w", encoding="utf-8")
+    for i in range(len(codigos)):
+        linea = codigos[i] + "|" + nombres[i] + "|" + productos[i] + "|" + str(montos[i]) + "|" + fechas[i] + "|" + fechas_pago[i] + "|" + estados[i]
+        archivo.write(linea + "\n")
+    archivo.close()
 
 
 def cargar_datos():
