@@ -136,9 +136,10 @@ def cargar_datos():
 
 
 def guardar_stock():
-    with open(ARCHIVO_STOCK, "w", encoding="utf-8") as f:
-        for i in range(len(stock_productos)):
-            f.write(stock_productos[i] + "|" + str(stock_cantidades[i]) + "\n")
+    archivo = open(ARCHIVO_STOCK, "w", encoding="utf-8")
+    for i in range(len(stock_productos)):
+        archivo.write(stock_productos[i] + "|" + str(stock_cantidades[i]) + "\n")
+    archivo.close()
 
 
 def cargar_stock():
