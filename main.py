@@ -21,6 +21,7 @@ MAX_FIADOS = 500
 ARCHIVO = "fiados.txt"
 ARCHIVO_STOCK = "stock.txt"
 
+
 # ---------- Validaciones (barreras para datos incorrectos) ----------
 def leer_opcion(mensaje, minimo, maximo):
     # Solo acepta un numero entero entre minimo y maximo
@@ -54,6 +55,7 @@ def leer_monto(mensaje):
         if valido and float(texto) > 0:
             return round(float(texto), 2)
         print("Error: ingrese solo numeros mayores que cero, sin letras ni simbolos. Ejemplo: 9.50")
+
 
 def leer_si_no(mensaje):
     while True:
@@ -96,12 +98,14 @@ def fecha_hora_actual():
     # Fecha y hora exactas del momento del registro
     return datetime.now().strftime("%d/%m/%Y %H:%M")
 
+
 def buscar_en(lista, valor):
     # Devuelve la posicion del valor en la lista, o -1 si no existe
     for i in range(len(lista)):
         if lista[i] == valor:
             return i
     return -1
+
 
 # ---------- Archivos ----------
 def guardar_datos():
@@ -127,8 +131,6 @@ def cargar_datos():
             fechas_pago.append(partes[5])
             estados.append(partes[6])
     archivo.close()
-    except FileNotFoundError:
-        pass  # primera vez: todavia no existe el archivo
 
 
 def guardar_stock():
@@ -148,7 +150,7 @@ def cargar_stock():
             stock_productos.append(partes[0])
             stock_cantidades.append(int(partes[1]))
     archivo.close()
-    
+
 
 # ---------- Menu ----------
 def mostrar_menu():
@@ -223,6 +225,8 @@ def deuda_pendiente(codigo, i):
     if codigos[i] == codigo and estados[i] == "Pendiente":
         return montos[i] + deuda_pendiente(codigo, i + 1)
     return deuda_pendiente(codigo, i + 1)
+
+
 def registrar_fiado():
     print("----- REGISTRAR FIADO -----")
 
@@ -410,6 +414,8 @@ def ordenar_por_deuda():
 def registrar_pago():
     print("----- REGISTRAR PAGO -----")
 
+    codigo = leer_codigo("Ingrese el codigo del cliente: ")
+
     if buscar_en(codigos, codigo) == -1:
         print("Cliente no encontrado")
         return
@@ -488,8 +494,3 @@ def main():
 
 
 main()
-
-
-
-
-
