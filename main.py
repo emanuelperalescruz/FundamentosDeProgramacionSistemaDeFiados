@@ -1,6 +1,4 @@
 
-import os
-import re
 from datetime import datetime
 
 # ---------- Datos en memoria (arreglos paralelos) ----------
@@ -19,11 +17,9 @@ stock_cantidades = []
 
 MAX_FIADOS = 500
 
-# Los archivos se guardan junto a main.py
-CARPETA = os.path.dirname(os.path.abspath(__file__))
-ARCHIVO = os.path.join(CARPETA, "fiados.txt")
-ARCHIVO_STOCK = os.path.join(CARPETA, "stock.txt")
-
+# Nombres de los archivos donde se guardan los datos
+ARCHIVO = "fiados.txt"
+ARCHIVO_STOCK = "stock.txt"
 
 # ---------- Validaciones (barreras para datos incorrectos) ----------
 def leer_opcion(mensaje, minimo, maximo):
