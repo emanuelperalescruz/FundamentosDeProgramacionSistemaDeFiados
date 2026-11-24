@@ -143,16 +143,16 @@ def guardar_stock():
 
 
 def cargar_stock():
-    try:
-        with open(ARCHIVO_STOCK, "r", encoding="utf-8") as f:
-            for linea in f:
-                partes = linea.strip().split("|")
-                if len(partes) == 2 and partes[1].isdigit():
-                    stock_productos.append(partes[0])
-                    stock_cantidades.append(int(partes[1]))
-    except FileNotFoundError:
-        pass
-
+    archivo = open(ARCHIVO_STOCK, "a", encoding="utf-8")
+    archivo.close()
+    archivo = open(ARCHIVO_STOCK, "r", encoding="utf-8")
+    for linea in archivo:
+        partes = linea.strip().split("|")
+        if len(partes) == 2 and partes[1].isdigit():
+            stock_productos.append(partes[0])
+            stock_cantidades.append(int(partes[1]))
+    archivo.close()
+    
 
 # ---------- Menu ----------
 def mostrar_menu():
